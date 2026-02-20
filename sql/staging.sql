@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 -- Drop the staging table if it already exists
 DROP TABLE IF EXISTS stg_videos;
 
@@ -13,18 +12,3 @@ CREATE TABLE stg_videos (
     dislikes BIGINT,             -- Number of dislikes as integer
     comment_count BIGINT         -- Number of comments as integer
 );
-=======
-DROP TABLE IF EXISTS stg_videos;
-
-CREATE TABLE stg_videos (
-    video_id VARCHAR(50),
-    published_date DATE,
-    title TEXT,
-    description LONGTEXT,
-    views BIGINT,
-    likes BIGINT,
-    dislikes BIGINT,
-    comment_count BIGINT
-);
-
->>>>>>> af9355ae661a7cd22b1222afff40ee8d379f2633

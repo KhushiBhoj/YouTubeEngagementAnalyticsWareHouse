@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 -- Drop MART 1 table if it exists
 DROP TABLE IF EXISTS mart_top_views;
 
@@ -25,26 +24,3 @@ FROM fact_engagement f
 JOIN dim_video dv ON f.video_key = dv.video_key                        -- Join to video dimension
 WHERE f.likes >= 0 AND f.dislikes >= 0                                 -- Only consider non-negative engagements
 GROUP BY dv.title;                                                     -- Aggregate by video title
-=======
--- MART 1 — Top Views Mart
-CREATE TABLE mart_top_views AS
-SELECT
-    dv.title,
-    SUM(f.views) AS total_views
-FROM fact_engagement f
-JOIN dim_video dv ON f.video_key = dv.video_key
-GROUP BY dv.title
-ORDER BY total_views DESC;
-
--- MART 2 — Controversy Mart 
-CREATE TABLE mart_controversy AS
-SELECT
-    dv.title,
-    SUM(f.likes) AS likes,
-    SUM(f.dislikes) AS dislikes,
-    (SUM(f.dislikes) / (SUM(f.likes)+1)) AS controversy_score
-FROM fact_engagement f
-JOIN dim_video dv ON f.video_key = dv.video_key
-GROUP BY dv.title
-ORDER BY controversy_score DESC;
->>>>>>> af9355ae661a7cd22b1222afff40ee8d379f2633

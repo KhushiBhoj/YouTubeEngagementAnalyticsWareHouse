@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 -- Drop tables in correct order to avoid foreign key conflicts
 DROP TABLE IF EXISTS fact_engagement;
 DROP TABLE IF EXISTS dim_video;
@@ -33,52 +32,3 @@ CREATE TABLE fact_engagement (
     FOREIGN KEY (video_key) REFERENCES dim_video(video_key),  -- FK to video dimension
     FOREIGN KEY (date_key) REFERENCES dim_date(date_key)      -- FK to date dimension
 );
-=======
-CREATE TABLE dim_video (
-    video_key INT AUTO_INCREMENT PRIMARY KEY,
-    video_id VARCHAR(50) UNIQUE,
-    title TEXT,
-    description LONGTEXT
-);
-INSERT INTO dim_video (video_id, title, description)
-SELECT DISTINCT video_id, title, description
-FROM stg_videos;
-
-CREATE TABLE dim_date (
-    date_key DATE PRIMARY KEY,
-    year INT,
-    month INT,
-    day INT
-);
-INSERT INTO dim_date
-SELECT DISTINCT
-    published_date,
-    YEAR(published_date),
-    MONTH(published_date),
-    DAY(published_date)
-FROM stg_videos;
-
-CREATE TABLE fact_engagement (
-    fact_id INT AUTO_INCREMENT PRIMARY KEY,
-    video_key INT,
-    date_key DATE,
-    views BIGINT,
-    likes BIGINT,
-    dislikes BIGINT,
-    comment_count BIGINT,
-
-    FOREIGN KEY (video_key) REFERENCES dim_video(video_key),
-    FOREIGN KEY (date_key) REFERENCES dim_date(date_key)
-);
-INSERT INTO fact_engagement (video_key, date_key, views, likes, dislikes, comment_count)
-SELECT
-    dv.video_key,
-    dd.date_key,
-    s.views,
-    s.likes,
-    s.dislikes,
-    s.comment_count
-FROM stg_videos s
-JOIN dim_video dv ON s.video_id = dv.video_id
-JOIN dim_date dd ON s.published_date = dd.date_key;
->>>>>>> af9355ae661a7cd22b1222afff40ee8d379f2633

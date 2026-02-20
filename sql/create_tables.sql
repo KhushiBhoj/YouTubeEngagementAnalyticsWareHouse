@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 -- Drop the existing database if it exists to start fresh
 DROP DATABASE IF EXISTS youtube_dw;
 
@@ -20,21 +19,4 @@ CREATE TABLE raw_videos (
     dislikes VARCHAR(50),                        -- Number of dislikes as string (raw)
     comment_count VARCHAR(50),                   -- Number of comments as string (raw)
     load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Timestamp when the row was inserted
-=======
-DROP DATABASE IF EXISTS youtube_dw;
-CREATE DATABASE youtube_dw;
-USE youtube_dw;
-
-CREATE TABLE raw_videos (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    video_id VARCHAR(50),
-    published_date VARCHAR(20),
-    title TEXT,
-    description LONGTEXT,
-    views VARCHAR(50),
-    likes VARCHAR(50),
-    dislikes VARCHAR(50),
-    comment_count VARCHAR(50),
-    load_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
->>>>>>> af9355ae661a7cd22b1222afff40ee8d379f2633
 );

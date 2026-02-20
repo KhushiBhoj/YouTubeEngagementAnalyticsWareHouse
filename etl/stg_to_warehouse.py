@@ -1,5 +1,4 @@
 import pandas as pd
-<<<<<<< HEAD
 from sqlalchemy import create_engine, text
 
 # Create database connection
@@ -68,31 +67,3 @@ fact_df.to_sql(
     chunksize=50000
 )
 print("Fact loaded successfully 🔥")
-=======
-from sqlalchemy import create_engine
-
-# ==========================
-# SQLAlchemy engine
-# ==========================
-engine = create_engine(
-    "mysql+pymysql://root:$OneDirection1@localhost/youtube_dw?charset=utf8mb4"
-)
-
-# ==========================
-# Load staging data
-# ==========================
-stg_df = pd.read_sql("SELECT * FROM stg_videos;", engine)
-print(f"Loaded {len(stg_df)} rows from staging.")
-
-# ==========================
-# Example: Insert into dim_video using to_sql
-# ==========================
-video_df = stg_df[['video_id', 'title', 'description']].drop_duplicates()
-video_df.to_sql(
-    'dim_video',
-    engine,
-    if_exists='append',  # or 'replace' if you want to drop first
-    index=False,
-    method='multi'       # fast bulk insert
-)
->>>>>>> af9355ae661a7cd22b1222afff40ee8d379f2633
