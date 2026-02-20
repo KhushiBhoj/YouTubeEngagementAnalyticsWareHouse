@@ -46,3 +46,18 @@ Use this dataset for running the ETL scripts and performing analytics.
 ```bash
 git clone https://github.com/KhushiBhoj/YouTubeEngagementAnalyticsWareHouse.git
 cd YouTubeEngagementAnalyticsWareHouse
+```
+
+2. Download the dataset:
+Download the JSON dataset from the YouTube Dislike Dataset by Srujan and place all JSON files in:
+
+```
+data/raw_json/
+```
+
+---
+
+## Credits
+
+- **Dataset:** [YouTube Dislike Dataset](https://github.com/Suji04/YouTube-Dislike-Dataset)  
+- **ETL Development, Debugging, Comments & Markdown Beautification:**
