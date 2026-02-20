@@ -13,17 +13,17 @@ CREATE TABLE dim_video (
 
 -- Create dimension table for dates
 CREATE TABLE dim_date (
-    date_key DATE PRIMARY KEY,                 -- Date of the engagement
-    year INT,                                  -- Year part of the date
-    month INT,                                 -- Month part of the date
-    day INT                                    -- Day part of the date
+    `date_key` DATE PRIMARY KEY,                 -- Date of the engagement
+    `year` INT,                                  -- Year part of the date
+    `month` INT,                                 -- Month part of the date
+    `day` INT                                    -- Day part of the date
 );
 
 -- Create fact table for video engagement metrics
 CREATE TABLE fact_engagement (
     fact_id INT AUTO_INCREMENT PRIMARY KEY,    -- Surrogate key for fact table
     video_key INT,                             -- Foreign key to dim_video
-    date_key DATE,                             -- Foreign key to dim_date
+    `date_key` DATE,                           -- Foreign key to dim_date
     views BIGINT,                              -- Number of views
     likes BIGINT,                              -- Number of likes
     dislikes BIGINT,                           -- Number of dislikes
